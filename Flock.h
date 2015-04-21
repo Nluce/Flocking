@@ -29,16 +29,21 @@ public:
 	}
 
 	void move(float elapsedTime){
+
+
 		for (auto boid : boidList){
+			boid->PreMove();
+
+
 			for (auto boid2: boidList){
 				if (boid != boid2){
-					boid->Move(*boid2);
+					boid->FlockTogether(*boid2);
 				}
 			}
 		}
 
 		for (auto boid : boidList){
-			boid->position += boid->velocity * elapsedTime;
+			boid->Move(elapsedTime);
 		}
 	}
 
