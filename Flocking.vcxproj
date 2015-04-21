@@ -80,7 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Boids.h" />
+    <ClInclude Include="Boid.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Flock.h" />
@@ -90,7 +90,7 @@
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Boids.cpp" />
+    <ClCompile Include="Boid.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Graph.cpp" />

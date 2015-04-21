@@ -76,9 +76,9 @@ int main(int argc, char ** argv)
 
 	Sprite::defaultMatrix = &world;
 	Sprite::defaultMatrixLocation = shaderIDMVP;
-//	world = translate(world, vec3(centerX, centerY, 0)); // center on screen
-//	world = scale(world, vec3(gameScale, gameScale, 1.0)); // scale to screen
-//	world = translate(world, vec3(0, -cameraHeight, 0)); // vertical scrolling
+	//	world = translate(world, vec3(centerX, centerY, 0)); // center on screen
+	//	world = scale(world, vec3(gameScale, gameScale, 1.0)); // scale to screen
+	//	world = translate(world, vec3(0, -cameraHeight, 0)); // vertical scrolling
 
 	Flock flock;
 
@@ -92,6 +92,7 @@ int main(int argc, char ** argv)
 			glClear(GL_COLOR_BUFFER_BIT);
 			glUseProgram(uiProgramColorTexture);
 
+			flock.move(theGame.elapsedTime);
 			flock.draw();
 
 			glfwSwapBuffers(window);
