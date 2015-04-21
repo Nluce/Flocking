@@ -23,7 +23,7 @@ public:
 	void PreMove(){
 		newVelocity = velocity;
 
-		const int border = 100;
+		const int border = 50;
 		const float turningForce = 0.8;
 		offScreen = false;
 		// keep the boids on the screen
@@ -96,7 +96,7 @@ public:
 
 
 		const float flockingRange = 50; // how close they have to be to follow their neighbor
-		const float flockingForce = 0.05;
+		const float flockingForce = 0.1;
 
 		if (len < eyeSightLimit){
 			// boid can see the other boid
