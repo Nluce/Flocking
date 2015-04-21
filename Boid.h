@@ -12,7 +12,7 @@ public:
 	vec2 velocity = vec2();
 	vec2 newVelocity = vec2();
 
-	const float maxSpeed = 70;
+	const float maxSpeed = 120;
 	const vec2 center = vec2(640, 480) / 2.0f;
 
 	void Draw()
@@ -22,21 +22,21 @@ public:
 	void PreMove(){
 		newVelocity = velocity;
 
-
+		const int border = 100;
+		const float turningForce = 0.8;
 		// keep the boids on the screen
-		if (position.x < 0) {
-			newVelocity.x += 0.5;
+		if (position.x < border) {
+			newVelocity.x += turningForce;
+		}
+		if (position.x > 640 - border) {
+			newVelocity.x -= turningForce;
+		}
+		if (position.y < border) {
+			newVelocity.y += turningForce;
 		}
 
-		if (position.x > 640) {
-			newVelocity.x -= 0.5;
-		}
-		if (position.y < 0) {
-			newVelocity.y += 0.5;
-		}
-
-		if (position.y > 480) {
-			newVelocity.y -= 0.5;
+		if (position.y > 480 - border) {
+			newVelocity.y -= turningForce;
 		}
 
 
@@ -47,24 +47,33 @@ public:
 		float len = length(d);
 
 		const float eyeSightLimit = 100; // how far the boid can see
-		const float spacingMin = 30; // how far away from each other they want to be
+
+
+		const float spacingMin = 20; // how far away from each other they want to be
+		const float moveApartForce = 0.9;
+
 		const float spacingMax = 90; // how far away from each other they want to be
-		const float flockingRange = 40; // how close they have to be to follow their neighbor
+		const float moveTogetherForce = 0.1;
+
+
+		const float flockingRange = 50; // how close they have to be to follow their neighbor
+		const float flockingForce = 0.05;
 
 		if (len < eyeSightLimit){
 			// boid can see the other boid
 
 
 			if (len < spacingMin){
-				newVelocity -= normalize(d) * 0.9f;
+				newVelocity -= normalize(d) * moveApartForce;
 			}
+
 			if (len > spacingMax){
-				newVelocity += normalize(d) * 0.1f;
+				newVelocity += normalize(d) * moveTogetherForce;
 			}
 
 			if (len < flockingRange){
 				if (length(otherBoid.velocity) > 0){
-					newVelocity += normalize(otherBoid.velocity) * 0.1f;
+					newVelocity += normalize(otherBoid.velocity) * flockingForce;
 				}
 			}
 		}
