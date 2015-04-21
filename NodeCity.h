@@ -10,8 +10,9 @@
 //#include <time.h>
 #include "Texture.h"
 #include "Text.h"
-#include "Sprite.h"
 #include "Shape.h"
+#include "Sprite.h"
+
 //#include "Game.h"
 
 #include "Graph.h"
