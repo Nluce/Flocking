@@ -38,7 +38,7 @@ public:
 	}
 
 	void move(float elapsedTime){
-
+		//Call pre move on birds and hawks to clear their variables.
 		for (auto boid : boidList){
 			boid->PreMove();
 		}
@@ -47,22 +47,26 @@ public:
 			hawk->PreMove();
 		}
 
-
+		//loop through every hawk 
 		for (auto hawk : hawklist){
-			for (auto boid2 : boidList){
+			
+			for (auto boid2 : boidList)
+			//gives eaach bird a chance to evade the hawk, 
+			//and each hawk a chance to chace the birds.
+			{
 				hawk->Chase(*boid2);
 				boid2->Evade(*hawk);
 			}
-
+			//so the hawks can flock with other hawks.
 			for (auto hawk2 : hawklist){
 				if (hawk != hawk2){
-					hawk->HawkFlock(*hawk2);
+					hawk->HawkAntiFlock(*hawk2);
 				}
 			}
 		}
 
 
-
+		//so the birds can flock with other birds.
 		for (auto boid : boidList){
 			for (auto boid2 : boidList){
 				if (boid != boid2){
@@ -72,7 +76,7 @@ public:
 		}
 
 
-
+		//after calculations for hawks and birds, move the hawks and birds.
 		for (auto boid : boidList){
 			boid->Move(elapsedTime);
 		}
